@@ -14,38 +14,19 @@ offset = Vector2( 4, 4 )
 script = ExtResource( 1 )
 type = "integer"
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-margin_left = 8.0
-margin_top = 10.0
-margin_right = 65.0
-margin_bottom = 56.0
+[node name="Panel" type="PanelContainer" parent="."]
+margin_left = 4.0
+margin_top = 68.0
+margin_right = 68.0
+margin_bottom = 84.0
+grow_horizontal = 2
 theme = ExtResource( 3 )
 
-[node name="Values" type="HBoxContainer" parent="PanelContainer"]
+[node name="Labels" type="HBoxContainer" parent="Panel"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 65.0
-margin_bottom = 51.0
-
-[node name="Labels" type="VBoxContainer" parent="PanelContainer/Values"]
-margin_right = 54.0
-margin_bottom = 44.0
-
-[node name="Data" type="Label" parent="PanelContainer/Values/Labels"]
-margin_right = 54.0
-margin_bottom = 20.0
-text = "DATA: "
-
-[node name="Type" type="Label" parent="PanelContainer/Values/Labels"]
-margin_top = 24.0
-margin_right = 54.0
-margin_bottom = 44.0
-text = "TYPE: "
-
-[node name="Datas" type="VBoxContainer" parent="PanelContainer/Values"]
-margin_left = 58.0
-margin_right = 58.0
-margin_bottom = 44.0
+margin_right = 57.0
+margin_bottom = 9.0
 
 [node name="Area2D" type="Area2D" parent="."]
 input_pickable = false
@@ -54,5 +35,5 @@ input_pickable = false
 position = Vector2( 36, 36 )
 shape = SubResource( 1 )
 
-[connection signal="mouse_entered" from="PanelContainer" to="." method="_on_PanelContainer_mouse_entered"]
-[connection signal="mouse_exited" from="PanelContainer" to="." method="_on_PanelContainer_mouse_exited"]
+[connection signal="mouse_entered" from="Panel" to="." method="_on_PanelContainer_mouse_entered"]
+[connection signal="mouse_exited" from="Panel" to="." method="_on_PanelContainer_mouse_exited"]

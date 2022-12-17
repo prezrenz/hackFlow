@@ -51,12 +51,12 @@ margin_bottom = 240.0
 mouse_filter = 2
 theme = ExtResource( 5 )
 
-[node name="PanelContainer" type="Panel" parent="GameUI"]
+[node name="Buttons" type="Panel" parent="GameUI"]
 margin_right = 1280.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 1280, 26 )
 
-[node name="varList" type="Button" parent="GameUI/PanelContainer"]
+[node name="varList" type="Button" parent="GameUI/Buttons"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -103.0
@@ -67,7 +67,7 @@ rect_min_size = Vector2( 98, 26 )
 theme = ExtResource( 5 )
 text = "Variables"
 
-[node name="codeEditor" type="Button" parent="GameUI/PanelContainer"]
+[node name="codeEditor" type="Button" parent="GameUI/Buttons"]
 margin_left = 4.0
 margin_top = 8.0
 margin_right = 102.0
@@ -76,5 +76,9 @@ rect_min_size = Vector2( 98, 26 )
 theme = ExtResource( 5 )
 text = "Code Editor"
 
-[connection signal="pressed" from="GameUI/PanelContainer/varList" to="GameUI" method="_on_varList_pressed"]
-[connection signal="pressed" from="GameUI/PanelContainer/codeEditor" to="GameUI" method="_on_codeEditor_pressed"]
+[node name="ShowHideKeys" type="Button" parent="GameUI/Buttons"]
+margin_right = 12.0
+margin_bottom = 20.0
+
+[connection signal="pressed" from="GameUI/Buttons/varList" to="GameUI" method="_on_varList_pressed"]
+[connection signal="pressed" from="GameUI/Buttons/codeEditor" to="GameUI" method="_on_codeEditor_pressed"]
