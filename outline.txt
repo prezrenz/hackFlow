@@ -1,0 +1,45 @@
+# FLOW HACK LANGUAGE
+
+GOAL: Get your avatar through the cyber-space and send yourself to the next network till you reach your home network
+
+;LOOP
+INC X
+DEC Y
+GOTO LOOP
+
+## COMMANDS:
+ - INC X
+ - DEC X
+ - REP X Y
+ - STOR X
+ - EMIT X
+ - LES X Y
+ - GRT X Y
+ - EQL X Y
+
+## TILES
+ - NORMAL[ ]: No effect, walkable
+ - VOID[*]: No effect, non-walkable
+ - INPUT[I]: Emits a value, allows you to store
+ - DISK[D]: Contains valuable info, increases score
+ - LOCK[L]: Needs a value from you, must emit value
+ - PORT[P]: Teleports you
+ - EXIT[E]: Reach this tile to win
+
+## LEVELS
+
+### TESTS
+BLANK:
+[ * ][ * ][ * ][ * ][ * ][ * ][ * ][ * ][ * ][ * ]
+[ * ][ * ][ * ][ * ][ * ][ * ][ * ][ * ][ * ][ * ]
+[ * ][ * ][ * ][ * ][ * ][ * ][ * ][ * ][ * ][ * ]
+[ * ][ * ][ * ][ * ][ * ][ * ][ * ][ * ][ * ][ * ]
+[ * ][ * ][ * ][ * ][ * ][ * ][ * ][ * ][ * ][ * ]
+
+TEST1:
+[ * ][ P1][ * ][ * ][ * ][ * ][ * ][ * ][ * ][ * ]
+[ * ][   ][ * ][ * ][ * ][ * ][ * ][ * ][ * ][ P2]
+[ * ][   ][ L1][ P2][ * ][ I1][ * ][ D ][ * ][ * ]
+[ * ][   ][ * ][ * ][ * ][   ][ * ][   ][ * ][ I2]
+[ * ][ @ ][ * ][ * ][ * ][   ][ L2][   ][ * ][ * ]
+[ * ][ * ][ * ][ * ][ * ][ P1][ * ][ * ][ * ][ E ]
