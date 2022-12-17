@@ -2,12 +2,12 @@ extends Node2D
 
 #var levelin = preload("res://scripts/LevelInputs.gd")
 
-onready var cam = $Control/Level/GameWorld/level/Camera2D
-onready var player = $Control/Level/GameWorld/level/Player
-onready var level = $Control/Level/GameWorld/level
+onready var cam = $Level/GameWorld/level/Camera2D
+onready var player = $Level/GameWorld/level/Player
+onready var level = $Level/GameWorld/level
 
-onready var editor = $Control/GameUI/Editor
-onready var varList = $Control/GameUI/Variables
+onready var editor = $GameUI/Editor
+onready var varList = $GameUI/Variables
 
 onready var score = 5000
 

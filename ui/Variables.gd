@@ -9,18 +9,18 @@ var valLabels = {}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for i in editor.vars.size():
-		var name = Label.new()
+		var nam = Label.new()
 		var val = Label.new()
 		
-		name.set_text(editor.vars[i]["name"])
+		nam.set_text(editor.vars[i]["name"])
 		val.set_text(str(editor.vars[i]["value"]))
 		
-		name.set_align(1)
+		nam.set_align(1)
 		val.set_align(1)
 		
 		valLabels.merge({editor.vars[i]["name"]: val})
 		
-		nameList.add_child(name)
+		nameList.add_child(nam)
 		valueList.add_child(val)
 
 func _process(delta):
