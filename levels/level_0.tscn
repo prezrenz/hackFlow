@@ -16,7 +16,6 @@ position = Vector2( 0, 0 )
 [node name="Input" parent="." index="2" instance=ExtResource( 2 )]
 position = Vector2( 72, 144 )
 intDat = 10
-type = "integer"
 strDat = "open"
 
 [node name="Lock" parent="." index="3" instance=ExtResource( 5 )]
@@ -38,7 +37,6 @@ position = Vector2( 432, 144 )
 [node name="Input2" parent="." index="7" instance=ExtResource( 2 )]
 position = Vector2( 360, 72 )
 intDat = 19
-type = "integer"
 
 [node name="Lock2" parent="." index="8" instance=ExtResource( 5 )]
 position = Vector2( 432, 288 )

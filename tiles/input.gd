@@ -6,10 +6,13 @@ export(int) var intDat
 export(String, "string", "integer") var type
 export(String) var strDat
 
+onready var root = get_tree().get_root().get_node("Game")
+
 onready var panel = $Panel
 onready var labels = $Panel/Labels
 #onready var datas = $PanelContainer/Values/Datas
 onready var area = $Area2D
+onready var collider = $Area2D/CollisionShape2D
 
 var entered = false
 
@@ -28,22 +31,24 @@ func _ready():
 		
 	labels.add_child(data)
 	labels.add_child(datType)
+	
+	root.connect("toggleData", self, "toggle_data")
+	add_to_group("tiles")
 
-#func _process(delta):
-#	if((entered) and (Input.is_mouse_button_pressed(BUTTON_LEFT))):
-#		print(entered)
-#		if !popup.visible:
-#			popup.show()
-#		elif popup.visible:
-#			popup.hide()
+func _process(delta):
+	pass
 
-#
-#func _on_Area2D_mouse_entered():
-#	entered = true
-#	print("Yes")
-#	print(entered)
-#
-#
-#func _on_Area2D_mouse_exited():
-#	entered = false
-#	print(entered)
+func show_tile():
+	show()
+	collider.disabled = true
+
+func hide_tile():
+	hide()
+	collider.disabled = false
+
+func toggle_data():
+	if(!panel.visible):
+		panel.show()
+	else:
+		panel.hide()
+

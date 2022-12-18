@@ -76,9 +76,14 @@ rect_min_size = Vector2( 98, 26 )
 theme = ExtResource( 5 )
 text = "Code Editor"
 
-[node name="ShowHideKeys" type="Button" parent="GameUI/Buttons"]
-margin_right = 12.0
-margin_bottom = 20.0
+[node name="ToggleData" type="Button" parent="GameUI/Buttons"]
+margin_left = 106.0
+margin_top = 8.0
+margin_right = 207.0
+margin_bottom = 34.0
+theme = ExtResource( 5 )
+text = "Toggle Data"
 
 [connection signal="pressed" from="GameUI/Buttons/varList" to="GameUI" method="_on_varList_pressed"]
 [connection signal="pressed" from="GameUI/Buttons/codeEditor" to="GameUI" method="_on_codeEditor_pressed"]
+[connection signal="pressed" from="GameUI/Buttons/ToggleData" to="." method="_on_ToggleData_pressed"]

@@ -34,7 +34,6 @@ func _ready():
 	varCount += 1
 	vars.insert(varCount, {"name": "int", "value": 0, "type": "integer"})
 	varCount += 1
-	print(player)
 
 func _process(delta):
 	playerLocation.x = vars[0]["value"]
@@ -45,6 +44,7 @@ func reset():
 	labelPos = 0
 	curPos = 0
 	# text.cursor_set_line(curPos)
+	root.reset_game()
 	
 	for i in vars:
 		i["value"] = 0
@@ -95,6 +95,7 @@ func execute(cmd, arg1, arg2, arg3):
 							vars[i]["value"] = node.intDat
 						else:
 							pass #error here
+					node.hide_tile()
 				
 	elif(cmd == "jeq"):
 		for i in label.size():

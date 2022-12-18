@@ -4,7 +4,7 @@ onready var spr = $Sprite
 onready var dir = $Directions
 onready var coll = $CollisionShape2D
 onready var root = get_tree().root
-onready var editor = root.get_node("Game/Control/GameUI/Editor")
+onready var editor = root.get_node("Game/GameUI/Editor")
 
 onready var disk = preload("res://tiles/disk.tscn")
 onready var exit = preload("res://tiles/exit.tscn")
@@ -19,13 +19,6 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-#	var over1 = dir.get_overlapping_areas()
-#
-#	var over2 = get_overlapping_areas()
-#	if(!over1.empty()):
-#		print(over1[0].get_parent())
-#	if(!over2.empty()):
-#		print(over2[0].get_parent())
 	pass
 
 func unlock(var variable): #THERE HAS TO BE A BETTER WAY
@@ -34,11 +27,10 @@ func unlock(var variable): #THERE HAS TO BE A BETTER WAY
 	if overlaps.empty():
 		return
 		
-	print(overlaps)
+	#print(overlaps)
 	
 	for i in overlaps.size():
 		var node = overlaps[i].get_parent()
-		print(node)
 		
 		if node.tileName != "lock":
 			continue
@@ -50,7 +42,7 @@ func unlock(var variable): #THERE HAS TO BE A BETTER WAY
 					node.queue_free()
 			elif variable["type"] == "integer":
 				if variable["value"] == node.keyInt:
-					node.queue_free()
+					node.hide_tile()
 			else:
 				pass #error here
 				
@@ -59,6 +51,10 @@ func unlock(var variable): #THERE HAS TO BE A BETTER WAY
 
 func _on_Player_area_entered(area):
 	var node = area.get_owner()
+	print(node)
+	if(node.visible == false):
+		pass
+	
 	if(node.get_filename() == disk.get_path()):
 		root.score += 500
 	elif(node.get_filename() == exit.get_path()):
@@ -66,7 +62,10 @@ func _on_Player_area_entered(area):
 	elif(node.get_filename() == input.get_path()):
 		inputNode = node
 	elif(node.get_filename() == lock.get_path()):
-		editor.return_player()
+		print(node)
+		print(node.visible)
+		if(node.visible == true):
+			editor.return_player()
 		#throw error, lock encountered
 	elif(node.get_filename() == port.get_path()):
 		editor.prevLocation.x = editor.vars[0]["value"]

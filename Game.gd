@@ -11,6 +11,8 @@ onready var varList = $GameUI/Variables
 
 onready var score = 5000
 
+signal toggleData
+
 enum {NORM, VOID}
 var curTile = NORM
 
@@ -43,31 +45,8 @@ func _process(delta):
 	if(curTile == VOID):
 		editor.return_player()
 
-#func tile_effect():
-#	curTile = level.get_cell(editor.vars[0]["value"], editor.vars[1]["value"])
-#
-#	if(curTile == NORM):
-#		pass
-#	elif(curTile == VOID):
-#		player.position.x = editor.prevLocation.x * 72
-#		player.position.y = editor.prevLocation.y * 72
-#		#Should throw error THEN reset
-#		editor.reset()
-#	elif(curTile == INP):
-#		pass
-#	elif(curTile == DISK):
-#		print("SCORED")
-#		level.set_cell(editor.vars[0]["value"], editor.vars[1]["value"], NORM)
-#	elif(curTile == LOCK):
-#		player.position.x = editor.prevLocation.x * 72
-#		player.position.y = editor.prevLocation.y * 72
-#		#Should throw error THEN reset
-#		editor.reset()
-#	elif(curTile == PORT):
-#		for i in ports:
-#			if((ports[i]["from"].x == editor.playerLocation.x) and (ports[i]["from"].y == editor.playerLocation.y)):
-#				editor.vars[0]["value"] = ports[i]["to"].x
-#				editor.vars[1]["value"] = ports[i]["to"].y
-#	elif(curTile == EXIT):
-#		print("LEVEL END")
-#		#Show win card, go to next level
+func _on_ToggleData_pressed():
+	emit_signal("toggleData")
+
+func reset_game():
+	get_tree().call_group("tiles", "show_tile")
