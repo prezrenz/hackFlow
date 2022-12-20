@@ -1,0 +1,10 @@
+inc x
+inc x
+inc y
+inc y
+dec x
+stor int
+inc x
+emit int
+inc y
+inc y

@@ -1,6 +1,7 @@
 extends PopupPanel
 
 onready var root = get_tree().get_current_scene()
+
 onready var text = $VBoxContainer/TextEdit
 onready var player = root.find_node("Player")
 
@@ -51,9 +52,11 @@ func reset():
 
 func execute(cmd, arg1, arg2, arg3):
 	if(cmd == "inc"):
+		var found = false
 		for i in vars.size():
 			#THERE HAS TO BE A BETTER WAY
 			if(vars[i]["name"] == arg1):
+				found = true
 				if(arg1 == "x"):
 					prevLocation.x = vars[i]["value"]
 					vars[i]["value"] += 1
@@ -62,6 +65,9 @@ func execute(cmd, arg1, arg2, arg3):
 					vars[i]["value"] += 1
 				else:
 					vars[i]["value"] += 1
+		
+		if(!found):
+			
 	
 	elif(cmd == "dec"):
 		for i in vars.size():
@@ -169,7 +175,6 @@ func return_player():
 
 func _on_Reset_button_up():
 	reset()
-
 
 func _on_TextEdit_text_changed():
 	if(curPos > 0):

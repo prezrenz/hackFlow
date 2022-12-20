@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://ui/GameUI.gd" type="Script" id=1]
 [ext_resource path="res://levels/level_0.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Game.gd" type="Script" id=3]
 [ext_resource path="res://GameWorld.gd" type="Script" id=4]
 [ext_resource path="res://themes/mainTheme.tres" type="Theme" id=5]
+[ext_resource path="res://ui/error.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ui/Editor.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/Variables.tscn" type="PackedScene" id=8]
 
@@ -50,6 +51,10 @@ margin_right = 0.0
 margin_bottom = 240.0
 mouse_filter = 2
 theme = ExtResource( 5 )
+
+[node name="Error" parent="GameUI" instance=ExtResource( 6 )]
+margin_right = 82.0
+margin_bottom = 58.0
 
 [node name="Buttons" type="Panel" parent="GameUI"]
 margin_right = 1280.0
