@@ -49,4 +49,4 @@ func _on_ToggleData_pressed():
 	emit_signal("toggleData")
 
 func reset_game():
-	get_tree().call_group("tiles", "show_tile")
+	get_tree().call_group("tiles", "show")

@@ -31,14 +31,6 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func show_tile():
-	show()
-	collider.disabled = true
-
-func hide_tile():
-	hide()
-	collider.disabled = false
-
 func toggle_data():
 	if(!keyLabel.visible):
 		keyLabel.show()

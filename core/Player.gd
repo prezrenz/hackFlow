@@ -39,10 +39,10 @@ func unlock(var variable): #THERE HAS TO BE A BETTER WAY
 			
 			if variable["type"] == "string":
 				if variable["value"] == node.keyStr:
-					node.queue_free()
+					node.hide()
 			elif variable["type"] == "integer":
 				if variable["value"] == node.keyInt:
-					node.hide_tile()
+					node.hide()
 			else:
 				pass #error here
 				

@@ -3,6 +3,7 @@
 [ext_resource path="res://ui/error.gd" type="Script" id=1]
 
 [node name="Error" type="AcceptDialog"]
+popup_exclusive = true
 window_title = "Error!"
 script = ExtResource( 1 )
 

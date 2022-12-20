@@ -12,7 +12,7 @@ func _ready():
 #	pass
 
 func error(errorText: String, errorCmd: String, errorLine: int):
-	var error = "At line %d: %s\n" % [errorLine, errorCmd.to_upper()]
+	var error = "At line %d: %s\n" % [errorLine+1, errorCmd.to_upper()]
 	error = error + errorText + "\n"
 	
 	self.set_text(error)

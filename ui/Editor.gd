@@ -1,7 +1,7 @@
 extends PopupPanel
 
 onready var root = get_tree().get_current_scene()
-
+onready var errorHandler = root.get_node("GameUI/Error")
 onready var text = $VBoxContainer/TextEdit
 onready var player = root.find_node("Player")
 
@@ -67,7 +67,8 @@ func execute(cmd, arg1, arg2, arg3):
 					vars[i]["value"] += 1
 		
 		if(!found):
-			
+			var errorText = "Invalid Arguement: Variable %s not found!\n" % arg1
+			errorHandler.error(errorText, cmd, curPos)
 	
 	elif(cmd == "dec"):
 		for i in vars.size():
@@ -101,7 +102,7 @@ func execute(cmd, arg1, arg2, arg3):
 							vars[i]["value"] = node.intDat
 						else:
 							pass #error here
-					node.hide_tile()
+					node.hide()
 				
 	elif(cmd == "jeq"):
 		for i in label.size():
@@ -168,6 +169,7 @@ func _on_Step_button_up():
 	
 	if(cmd != "nop"):
 		curPos += 1
+	
 
 func return_player():
 	vars[0]["value"] = prevLocation.x

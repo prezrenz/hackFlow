@@ -10,14 +10,6 @@ onready var collider = $Area2D/CollisionShape2D
 func _ready():
 	add_to_group("tiles")
 
-func show_tile():
-	show()
-	collider.disabled = true
-
-func hide_tile():
-	hide()
-	collider.disabled = false
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
