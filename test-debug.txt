@@ -1,7 +1,8 @@
 inc x
 inc x
+;rep
 inc y
-inc y
+jeq y 2 rep
 dec x
 stor int
 inc x

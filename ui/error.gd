@@ -6,13 +6,14 @@ onready var errorLabel = $VBoxContainer/ErrorLabel
 
 func _ready():
 	self.get_close_button().visible = false
+	self.get_label().set_align(1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
 func error(errorText: String, errorCmd: String, errorLine: int):
-	var error = "At line %d: %s\n" % [errorLine+1, errorCmd.to_upper()]
+	var error = "At line %d: %s\n\n" % [errorLine+1, errorCmd]
 	error = error + errorText + "\n"
 	
 	self.set_text(error)

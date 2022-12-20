@@ -6,6 +6,7 @@ onready var cam = $Level/GameWorld/level/Camera2D
 onready var player = $Level/GameWorld/level/Player
 onready var level = $Level/GameWorld/level
 
+onready var errorHandler = $GameUI/Error
 onready var editor = $GameUI/Editor
 onready var varList = $GameUI/Variables
 

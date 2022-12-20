@@ -3,7 +3,7 @@ extends Area2D
 onready var spr = $Sprite
 onready var dir = $Directions
 onready var coll = $CollisionShape2D
-onready var root = get_tree().root
+onready var root = get_tree().get_current_scene()
 onready var editor = root.get_node("Game/GameUI/Editor")
 
 onready var disk = preload("res://tiles/disk.tscn")
@@ -40,11 +40,13 @@ func unlock(var variable): #THERE HAS TO BE A BETTER WAY
 			if variable["type"] == "string":
 				if variable["value"] == node.keyStr:
 					node.hide()
+					return true
 			elif variable["type"] == "integer":
 				if variable["value"] == node.keyInt:
 					node.hide()
+					return true
 			else:
-				pass #error here
+				return false
 				
 					
 
@@ -66,7 +68,7 @@ func _on_Player_area_entered(area):
 		print(node.visible)
 		if(node.visible == true):
 			editor.return_player()
-		#throw error, lock encountered
+		#throw error, lock encountered, or maybe not?
 	elif(node.get_filename() == port.get_path()):
 		editor.prevLocation.x = editor.vars[0]["value"]
 		editor.prevLocation.y = editor.vars[1]["value"]

@@ -29,7 +29,7 @@ func _ready():
 	varCount += 1
 	vars.insert(varCount, {"name": "y", "value": 0, "type": "special"})
 	varCount += 1
-	vars.insert(varCount, {"name": "cnt", "value": 0, "type": "special"})
+	vars.insert(varCount, {"name": "cnt", "value": 0, "type": "integer"})
 	varCount += 1
 	vars.insert(varCount, {"name": "str", "value": 0, "type": "string"})
 	varCount += 1
@@ -67,31 +67,58 @@ func execute(cmd, arg1, arg2, arg3):
 					vars[i]["value"] += 1
 		
 		if(!found):
-			var errorText = "Invalid Arguement: Variable %s not found!\n" % arg1
-			errorHandler.error(errorText, cmd, curPos)
+			var errorText = "Invalid Arguement: variable %s not found!" % arg1
+			errorHandler.error(errorText, text.get_line(curPos), curPos)
 	
 	elif(cmd == "dec"):
+		var found = false
 		for i in vars.size():
 			if(vars[i]["name"] == arg1):
-				vars[i]["value"] -= 1
+				found = true
+				if(arg1 == "x"):
+					prevLocation.x = vars[i]["value"]
+					vars[i]["value"] -= 1
+				elif(arg1 == "y"):
+					prevLocation.y = vars[i]["value"]
+					vars[i]["value"] -= 1
+				else:
+					vars[i]["value"] -= 1
+		
+		if(!found):
+			var errorText = "Invalid Arguement: variable %s not found!" % arg1
+			errorHandler.error(errorText, text.get_line(curPos), curPos)
 	
 	elif(cmd == "rst"):
-		for i in vars.size():
-			if(vars[i]["name"] == arg1):
-				vars[i]["value"] = 0
+		vars[2].value = 0
+#		var found = false
+#		for i in vars.size():
+#			if(vars[i]["name"] == arg1):
+#				found = true
+#				vars[i]["value"] = 0
+#
+#		if(!found):
+#			var errorText = "Invalid Arguement: variable %s not found!" % arg1
+#			errorHandler.error(errorText, text.get_line(curPos), curPos)
 	
 	elif(cmd == "emit"):
+		var unlocked = false
 		for i in vars.size():
 			if(vars[i]["name"] == arg1):
-				player.unlock(vars[i])
+				unlocked = player.unlock(vars[i])
+		if(!unlocked):
+			var errorText = "Mismatch: Failed to open lock, wrong key!"
+			errorHandler.error(errorText, text.get_line(curPos), curPos)
 	
 	elif(cmd == "stor"):
+		var found = false
 		for i in vars.size():
 			if(vars[i]["name"] == arg1):
+				found = true
 				var overlaps = player.get_overlapping_areas()
 				
 				if overlaps.empty():
-					pass #error here
+					var errorText = "No Input Data in position!"
+					errorHandler.error(errorText, text.get_line(curPos), curPos)
 				else:
 					var node = overlaps[0].get_parent()
 					
@@ -100,38 +127,88 @@ func execute(cmd, arg1, arg2, arg3):
 							vars[i]["value"] = node.strDat
 						elif vars[i]["type"] == "integer":
 							vars[i]["value"] = node.intDat
-						else:
-							pass #error here
+					else:
+						var errorText = "Mismatch: variable %s is of different Data Type than input!" % arg1
+						errorHandler.error(errorText, text.get_line(curPos), curPos)
 					node.hide()
-				
+		if(!found):
+			var errorText = "Invalid Arguement: Variable %s not found!" % arg1
+			errorHandler.error(errorText, text.get_line(curPos), curPos)
+		
 	elif(cmd == "jeq"):
+		var foundLabel = false
+		var foundVar = false
 		for i in label.size():
 			if(label.has(arg3)):
+				foundLabel = true
 				for i2 in vars.size():
 					if(vars[i2]["name"] == arg1):
+						foundVar = true
 						if(int(arg2) == vars[i2]["value"]):
 							curPos = label[arg3] - 1
-	
+		
+		if(!foundLabel):
+			var errorText = "Invalid Arguement: label %s not found!" % arg3
+			errorHandler.error(errorText, text.get_line(curPos), curPos)
+			return
+		elif(!foundVar):
+			var errorText = "Invalid Arguement: variable %s not found!" % arg1
+			errorHandler.error(errorText, text.get_line(curPos), curPos)
+			return
+			
 	elif(cmd == "jlt"):
+		var foundLabel = false
+		var foundVar = false
 		for i in label.size():
 			if(label.has(arg3)):
+				foundLabel = true
 				for i2 in vars.size():
 					if(vars[i2]["name"] == arg1):
+						foundVar = true
 						if(vars[i2]["value"] < int(arg2)):
 							curPos = label[arg3] - 1
-	
+		
+		if(!foundLabel):
+			var errorText = "Invalid Arguement: label %s not found!" % arg3
+			errorHandler.error(errorText, text.get_line(curPos), curPos)
+			return
+		elif(!foundVar):
+			var errorText = "Invalid Arguement: variable %s not found!" % arg1
+			errorHandler.error(errorText, text.get_line(curPos), curPos)
+			return
+		
 	elif(cmd == "jgt"):
+		var foundLabel = false
+		var foundVar = false
 		for i in label.size():
 			if(label.has(arg3)):
+				foundLabel = true
 				for i2 in vars.size():
 					if(vars[i2]["name"] == arg1):
+						foundVar = true
 						if(vars[i2]["value"] > int(arg2)):
 							curPos = label[arg3] - 1
-	
+		
+		if(!foundLabel):
+			var errorText = "Invalid Arguement: label %s not found!" % arg3
+			errorHandler.error(errorText, text.get_line(curPos), curPos)
+			return
+		elif(!foundVar):
+			var errorText = "Invalid Arguement: variable %s not found!" % arg1
+			errorHandler.error(errorText, text.get_line(curPos), curPos)
+			return
+		
 	elif(cmd == "jmp"):
+		var found = false
 		for i in label.size():
 			if(label.has(arg1)):
+				found = true
 				curPos = label[arg1] - 1
+		
+		if(!found):
+			var errorText = "Invalid Arguement: label %s not found!" % arg1
+			errorHandler.error(errorText, text.get_line(curPos), curPos)
+			return
 	#NOP - NO OPERATION, terminates program, required, should check for win condition
 	#and popup fail panel or win panel
 	elif(cmd == "nop"):
@@ -144,8 +221,8 @@ func _on_Step_button_up():
 	for i in text.get_line_count():
 		var line = text.get_line(i)
 		if(';' in line):
-			label.merge({line.get_slice(';',1): labelPos}, true)
-	
+			label.merge({line.get_slice(';',1): i}, true)
+	print(label)
 	text.cursor_set_line(curPos)
 	#If line is not in command, should throw error, reset for now
 	#If empty line means no NOP, throw error too, but reset for now
