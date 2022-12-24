@@ -9,6 +9,7 @@ onready var level = $Level/GameWorld/level
 onready var errorHandler = $GameUI/Error
 onready var editor = $GameUI/Editor
 onready var varList = $GameUI/Variables
+onready var openingLine = $GameUI/openingLine
 
 onready var score = 5000
 
@@ -33,6 +34,8 @@ func _ready():
 
 	editor.vars[0]["value"] = level.playerStart.x
 	editor.vars[1]["value"] = level.playerStart.y
+	
+	openingLine.popup_centered()
 
 func _process(delta):
 	editor.vars[0]["value"] = clamp(editor.vars[0]["value"], 0, level.mapSize.x-1)

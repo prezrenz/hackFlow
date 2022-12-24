@@ -2,7 +2,7 @@ inc x
 inc x
 ;rep
 inc y
-jeq y 2 rep
+jlt y 2 rep
 dec x
 stor int
 inc x
