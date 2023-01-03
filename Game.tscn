@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://ui/GameUI.gd" type="Script" id=1]
 [ext_resource path="res://levels/level_0.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://ui/Editor.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/Variables.tscn" type="PackedScene" id=8]
 [ext_resource path="res://ui/openingLine.tscn" type="PackedScene" id=9]
+[ext_resource path="res://ui/winStatus.tscn" type="PackedScene" id=10]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 3 )
@@ -30,6 +31,7 @@ render_target_update_mode = 3
 
 [node name="level" parent="Level/GameWorld" instance=ExtResource( 2 )]
 intro = " This is a test"
+outro = "Good job soldier!"
 
 [node name="GameUI" type="CanvasLayer" parent="."]
 script = ExtResource( 1 )
@@ -54,6 +56,8 @@ margin_right = 82.0
 margin_bottom = 58.0
 
 [node name="openingLine" parent="GameUI" instance=ExtResource( 9 )]
+
+[node name="winStatus" parent="GameUI" instance=ExtResource( 10 )]
 
 [node name="Buttons" type="Panel" parent="GameUI"]
 margin_right = 1280.0
