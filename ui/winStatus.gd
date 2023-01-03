@@ -24,11 +24,13 @@ func set_status(var is_won):
 		self.get_label().text = root.level.outro
 		self.get_ok().text = "Next Level"
 		won = true
+		self.popup_centered()
 	else:
 		self.window_title = "You Failed!"
 		self.get_label().text = "Don't give up, find the pattern and get to the Exit Signal!"
 		self.get_ok().text = "Reset"
 		won = false
+		self.popup_centered()
 
 
 func _on_winStatus_confirmed():

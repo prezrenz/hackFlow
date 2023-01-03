@@ -10,6 +10,7 @@ onready var errorHandler = $GameUI/Error
 onready var editor = $GameUI/Editor
 onready var varList = $GameUI/Variables
 onready var openingLine = $GameUI/openingLine
+onready var winStatus = $GameUI/winStatus
 
 onready var score = 5000
 

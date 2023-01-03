@@ -4,7 +4,6 @@ onready var spr = $Sprite
 onready var dir = $Directions
 onready var coll = $CollisionShape2D
 onready var root = get_tree().get_current_scene()
-onready var editor = root.get_node("Game/GameUI/Editor")
 
 onready var disk = preload("res://tiles/disk.tscn")
 onready var exit = preload("res://tiles/exit.tscn")
@@ -60,21 +59,21 @@ func _on_Player_area_entered(area):
 	if(node.get_filename() == disk.get_path()):
 		root.score += 500
 	elif(node.get_filename() == exit.get_path()):
-		print("exit")
+		root.winStatus.set_status(true)
 	elif(node.get_filename() == input.get_path()):
 		inputNode = node
 	elif(node.get_filename() == lock.get_path()):
 		print(node)
 		print(node.visible)
 		if(node.visible == true):
-			editor.return_player()
+			root.editor.return_player()
 		#throw error, lock encountered, or maybe not?
 	elif(node.get_filename() == port.get_path()):
-		editor.prevLocation.x = editor.vars[0]["value"]
-		editor.prevLocation.y = editor.vars[1]["value"]
+		root.editor.prevLocation.x = root.editor.vars[0]["value"]
+		root.editor.prevLocation.y = root.editor.vars[1]["value"]
 		
-		editor.vars[0]["value"] = node.dest.x
-		editor.vars[1]["value"] = node.dest.y
+		root.editor.vars[0]["value"] = node.dest.x
+		root.editor.vars[1]["value"] = node.dest.y
 
 
 func _on_Player_area_exited(area):

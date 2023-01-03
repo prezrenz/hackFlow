@@ -217,6 +217,7 @@ func execute(cmd, arg1, arg2, arg3):
 	else:
 		pass
 
+
 func _on_Step_button_up():
 	for i in text.get_line_count():
 		var line = text.get_line(i)
@@ -227,6 +228,10 @@ func _on_Step_button_up():
 	#If line is not in command, should throw error, reset for now
 	#If empty line means no NOP, throw error too, but reset for now
 	var line = text.get_line(curPos)
+	
+	if(line.empty()):
+		root.winStatus.set_status(false)
+		return
 	
 	if(';' in line):
 		curPos += 1
