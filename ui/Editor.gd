@@ -209,13 +209,12 @@ func execute(cmd, arg1, arg2, arg3):
 			var errorText = "Invalid Arguement: label %s not found!" % arg1
 			errorHandler.error(errorText, text.get_line(curPos), curPos)
 			return
-	#NOP - NO OPERATION, terminates program, required, should check for win condition
-	#and popup fail panel or win panel
-	elif(cmd == "nop"):
-		reset()
 	
 	else:
-		pass
+		print("Error should")
+		var errorText = "Invalid Command: command %s does not exist!" % arg1
+		errorHandler.error(errorText, text.get_line(curPos), curPos)
+		return
 
 
 func _on_Step_button_up():
@@ -240,7 +239,8 @@ func _on_Step_button_up():
 	var cmd = line.get_slice(" ", 0)
 
 	if(cmds.find(cmd) < 0):
-		reset()
+		var errorText = "Invalid Command: command %s does not exist!" % cmd
+		errorHandler.error(errorText, text.get_line(curPos), curPos)
 		return
 	
 	var arg1 = line.get_slice(" ", 1)
