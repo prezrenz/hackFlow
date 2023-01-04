@@ -58,6 +58,8 @@ func _on_Player_area_entered(area):
 	
 	if(node.get_filename() == disk.get_path()):
 		root.score += 500
+		root.disks += 1
+		node.hide()
 	elif(node.get_filename() == exit.get_path()):
 		root.winStatus.set_status(true)
 	elif(node.get_filename() == input.get_path()):

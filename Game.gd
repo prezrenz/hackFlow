@@ -12,12 +12,18 @@ onready var varList = $GameUI/Variables
 onready var openingLine = $GameUI/openingLine
 onready var winStatus = $GameUI/winStatus
 
-onready var score = 5000
+var score = 5000
+var loc
+var disks = 0
 
 signal toggleData
 
 enum {NORM, VOID}
 var curTile = NORM
+
+func calculate_final_score():
+	loc = editor.text.get_line_count()
+	score -= (loc * 100)
 
 func set_camera():
 	var map_limits = level.get_used_rect()

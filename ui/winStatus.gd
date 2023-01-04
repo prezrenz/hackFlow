@@ -20,8 +20,12 @@ func _ready():
 #	pass
 func set_status(var is_won):
 	if(is_won):
+		root.calculate_final_score()
 		self.window_title = "You Won!"
 		self.get_label().text = root.level.outro
+		self.get_label().text += "\n\nYOUR SCORE:\nBase Score: 5000\n" \
+								+ "Lines of Code used: %d * 100 = -%d\n" % [root.loc, root.loc * 100] \
+								+ "Disks: +%d\nFINAL SCORE: %d" % [root.disks * 500, root.score]
 		self.get_ok().text = "Next Level"
 		won = true
 		self.popup_centered()
