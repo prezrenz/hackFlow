@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://ui/GameUI.gd" type="Script" id=1]
 [ext_resource path="res://levels/level_0.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://ui/Variables.tscn" type="PackedScene" id=8]
 [ext_resource path="res://ui/openingLine.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ui/winStatus.tscn" type="PackedScene" id=10]
+[ext_resource path="res://ui/pause_menu.tscn" type="PackedScene" id=11]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 3 )
@@ -51,6 +52,9 @@ margin_bottom = 240.0
 mouse_filter = 2
 theme = ExtResource( 5 )
 
+[node name="pause_menu" parent="GameUI" instance=ExtResource( 11 )]
+visible = false
+
 [node name="Error" parent="GameUI" instance=ExtResource( 6 )]
 margin_right = 82.0
 margin_bottom = 58.0
@@ -64,34 +68,54 @@ margin_right = 1280.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 1280, 26 )
 
-[node name="varList" type="Button" parent="GameUI/Buttons"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -103.0
-margin_top = 8.0
-margin_right = -5.0
-margin_bottom = 33.0
-rect_min_size = Vector2( 98, 26 )
-theme = ExtResource( 5 )
-text = "Variables"
-
 [node name="codeEditor" type="Button" parent="GameUI/Buttons"]
-margin_left = 4.0
-margin_top = 8.0
-margin_right = 102.0
-margin_bottom = 34.0
+margin_left = 2.0
+margin_right = 139.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 98, 26 )
+size_flags_horizontal = 11
+size_flags_vertical = 3
 theme = ExtResource( 5 )
 text = "Code Editor"
 
+[node name="varList" type="Button" parent="GameUI/Buttons"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -115.0
+margin_top = -20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 98, 26 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 5 )
+text = "Variables"
+
 [node name="ToggleData" type="Button" parent="GameUI/Buttons"]
-margin_left = 106.0
-margin_top = 8.0
-margin_right = 207.0
-margin_bottom = 34.0
+margin_left = 1019.0
+margin_right = 1163.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource( 5 )
 text = "Toggle Data"
 
-[connection signal="pressed" from="GameUI/Buttons/varList" to="GameUI" method="_on_varList_pressed"]
+[node name="pauseButton" type="Button" parent="GameUI/Buttons"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -76.0
+margin_top = -20.0
+margin_right = 76.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 5 )
+text = "Pause Game"
+
 [connection signal="pressed" from="GameUI/Buttons/codeEditor" to="GameUI" method="_on_codeEditor_pressed"]
+[connection signal="pressed" from="GameUI/Buttons/varList" to="GameUI" method="_on_varList_pressed"]
 [connection signal="pressed" from="GameUI/Buttons/ToggleData" to="." method="_on_ToggleData_pressed"]
+[connection signal="pressed" from="GameUI/Buttons/pauseButton" to="." method="_on_pauseButton_pressed"]

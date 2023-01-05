@@ -11,6 +11,7 @@ onready var editor = $GameUI/Editor
 onready var varList = $GameUI/Variables
 onready var openingLine = $GameUI/openingLine
 onready var winStatus = $GameUI/winStatus
+onready var pauseMenu = $GameUI/pause_menu
 
 var score = 5000
 var loc
@@ -61,3 +62,7 @@ func _on_ToggleData_pressed():
 
 func reset_game():
 	get_tree().call_group("tiles", "show")
+
+
+func _on_pauseButton_pressed():
+	pauseMenu.popup_centered()
