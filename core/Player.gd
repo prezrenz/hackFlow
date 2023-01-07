@@ -11,6 +11,8 @@ onready var input = preload("res://tiles/input.tscn")
 onready var lock = preload("res://tiles/lock.tscn")
 onready var port = preload("res://tiles/port.tscn")
 
+onready var curTile = root.NORM
+
 var inputNode
 
 # Called when the node enters the scene tree for the first time.
@@ -18,7 +20,13 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(_delta):
-	pass
+	self.position.x = root.editor.vars[0]["value"] * 72
+	self.position.y = root.editor.vars[1]["value"] * 72
+
+	curTile = root.level.get_cell(root.editor.vars[0]["value"], root.editor.vars[1]["value"])
+	
+	if(curTile == root.VOID):
+		root.editor.return_player()
 
 func unlock(var variable): #THERE HAS TO BE A BETTER WAY
 	var overlaps = dir.get_overlapping_areas()

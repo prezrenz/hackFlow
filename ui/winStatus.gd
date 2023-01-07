@@ -39,7 +39,7 @@ func set_status(var is_won):
 
 func _on_winStatus_confirmed():
 	if(won == true):
-		pass # Next Level
+		root.change_level()
 	else:
 		root.editor.reset()
 

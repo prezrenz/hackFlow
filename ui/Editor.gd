@@ -21,8 +21,7 @@ var cmds = ["inc",
 			"jeq",
 			"jlt",
 			"jgt",
-			"jmp",
-			"nop"]
+			"jmp"]
 
 func _ready():
 	vars.insert(varCount, {"name": "x", "value": 0, "type": "special"})
@@ -39,6 +38,9 @@ func _ready():
 func _process(_delta):
 	playerLocation.x = vars[0]["value"]
 	playerLocation.y = vars[1]["value"]
+	
+	vars[0]["value"] = clamp(vars[0]["value"], 0, 15-1)
+	vars[1]["value"] = clamp(vars[1]["value"], 0, 10-1)
 
 func reset():
 	label = {}

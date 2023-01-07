@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://ui/GameUI.gd" type="Script" id=1]
-[ext_resource path="res://levels/level_0.tscn" type="PackedScene" id=2]
+[ext_resource path="res://levels/level_1.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Game.gd" type="Script" id=3]
 [ext_resource path="res://GameWorld.gd" type="Script" id=4]
 [ext_resource path="res://themes/mainTheme.tres" type="Theme" id=5]
@@ -30,9 +30,7 @@ handle_input_locally = false
 usage = 0
 render_target_update_mode = 3
 
-[node name="level" parent="Level/GameWorld" instance=ExtResource( 2 )]
-intro = " This is a test"
-outro = "Good job soldier!"
+[node name="level_1" parent="Level/GameWorld" instance=ExtResource( 2 )]
 
 [node name="GameUI" type="CanvasLayer" parent="."]
 script = ExtResource( 1 )

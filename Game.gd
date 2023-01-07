@@ -2,9 +2,10 @@ extends Node2D
 
 #var levelin = preload("res://scripts/LevelInputs.gd")
 
-onready var cam = $Level/GameWorld/level/Camera2D
-onready var player = $Level/GameWorld/level/Player
-onready var level = $Level/GameWorld/level
+onready var cam = $Level/GameWorld/level_1/Camera2D
+onready var player = $Level/GameWorld/level_1/Player
+onready var level = $Level/GameWorld/level_1
+onready var gameWorld = $Level/GameWorld
 
 onready var errorHandler = $GameUI/Error
 onready var editor = $GameUI/Editor
@@ -16,6 +17,8 @@ onready var pauseMenu = $GameUI/pause_menu
 var score = 5000
 var loc
 var disks = 0
+
+var curLevel = 1
 
 signal toggleData
 
@@ -46,16 +49,7 @@ func _ready():
 	openingLine.popup_centered()
 
 func _process(_delta):
-	editor.vars[0]["value"] = clamp(editor.vars[0]["value"], 0, level.mapSize.x-1)
-	editor.vars[1]["value"] = clamp(editor.vars[1]["value"], 0, level.mapSize.y-1)
-	
-	player.position.x = editor.vars[0]["value"] * 72
-	player.position.y = editor.vars[1]["value"] * 72
-	
-	curTile = level.get_cell(editor.vars[0]["value"], editor.vars[1]["value"])
-	
-	if(curTile == VOID):
-		editor.return_player()
+	pass
 
 func _on_ToggleData_pressed():
 	emit_signal("toggleData")
@@ -66,3 +60,18 @@ func reset_game():
 
 func _on_pauseButton_pressed():
 	pauseMenu.popup_centered()
+
+func change_level():
+	reset_game()
+	editor.reset()
+	editor.text.text = ""
+	
+	var new_level = load("res://levels/level_" + str(curLevel + 1) + ".tscn")
+	var new_level_instance = new_level.instance()
+	level.queue_free()
+	level = new_level_instance
+	
+	editor.vars[0]["value"] = level.playerStart.x
+	editor.vars[1]["value"] = level.playerStart.y
+	
+	gameWorld.add_child(new_level_instance)
