@@ -14,7 +14,6 @@ func _ready():
 
 
 func _on_Play_pressed():
-	print(get_tree().get_current_scene())
 	get_tree().change_scene("res://Game.tscn")
 
 

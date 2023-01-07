@@ -211,7 +211,6 @@ func execute(cmd, arg1, arg2, arg3):
 			return
 	
 	else:
-		print("Error should")
 		var errorText = "Invalid Command: command %s does not exist!" % arg1
 		errorHandler.error(errorText, text.get_line(curPos), curPos)
 		return
@@ -222,7 +221,6 @@ func _on_Step_button_up():
 		var line = text.get_line(i)
 		if(';' in line):
 			label.merge({line.get_slice(';',1): i}, true)
-	print(label)
 	text.cursor_set_line(curPos)
 	#If line is not in command, should throw error, reset for now
 	#If empty line means no NOP, throw error too, but reset for now

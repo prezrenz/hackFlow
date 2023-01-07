@@ -25,8 +25,7 @@ func unlock(var variable): #THERE HAS TO BE A BETTER WAY
 	
 	if overlaps.empty():
 		return
-		
-	#print(overlaps)
+
 	
 	for i in overlaps.size():
 		var node = overlaps[i].get_parent()
@@ -52,7 +51,6 @@ func unlock(var variable): #THERE HAS TO BE A BETTER WAY
 
 func _on_Player_area_entered(area):
 	var node = area.get_owner()
-	print(node)
 	if(node.visible == false):
 		pass
 	
@@ -65,8 +63,6 @@ func _on_Player_area_entered(area):
 	elif(node.get_filename() == input.get_path()):
 		inputNode = node
 	elif(node.get_filename() == lock.get_path()):
-		print(node)
-		print(node.visible)
 		if(node.visible == true):
 			root.editor.return_player()
 		#throw error, lock encountered, or maybe not?
