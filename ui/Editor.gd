@@ -36,7 +36,7 @@ func _ready():
 	vars.insert(varCount, {"name": "int", "value": 0, "type": "integer"})
 	varCount += 1
 
-func _process(delta):
+func _process(_delta):
 	playerLocation.x = vars[0]["value"]
 	playerLocation.y = vars[1]["value"]
 

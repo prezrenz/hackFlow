@@ -45,7 +45,7 @@ func _ready():
 	
 	openingLine.popup_centered()
 
-func _process(delta):
+func _process(_delta):
 	editor.vars[0]["value"] = clamp(editor.vars[0]["value"], 0, level.mapSize.x-1)
 	editor.vars[1]["value"] = clamp(editor.vars[1]["value"], 0, level.mapSize.y-1)
 	

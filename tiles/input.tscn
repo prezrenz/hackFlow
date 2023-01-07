@@ -34,6 +34,3 @@ input_pickable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 36, 36 )
 shape = SubResource( 1 )
-
-[connection signal="mouse_entered" from="Panel" to="." method="_on_PanelContainer_mouse_entered"]
-[connection signal="mouse_exited" from="Panel" to="." method="_on_PanelContainer_mouse_exited"]

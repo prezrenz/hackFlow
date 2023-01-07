@@ -1,4 +1,4 @@
-extends PopupPanel
+extends AcceptDialog
 
 
 # Declare member variables here. Examples:
@@ -8,21 +8,11 @@ extends PopupPanel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	self.get_close_button().visible = false
+	self.get_label().set_align(1)
+	self.get_ok().set_text_align(1)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-
-
-func _on_Resume_pressed():
-	self.hide()
-
-
-func _on_Help_pressed():
-	pass # Replace with function body.
-
-
-func _on_Quit_pressed():
-	get_tree().change_scene("res://ui/main_menu.tscn")

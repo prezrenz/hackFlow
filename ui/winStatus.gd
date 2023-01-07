@@ -46,4 +46,4 @@ func _on_winStatus_confirmed():
 
 func _on_winStatus_custom_action(action):
 	if(action == "quit_game"):
-		get_tree().quit() # Should quit to main menu
+		get_tree().change_scene("res://ui/main_menu.tscn") # Should quit to main menu

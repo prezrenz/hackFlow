@@ -17,7 +17,7 @@ var inputNode
 func _ready():
 	pass # Replace with function body.
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 func unlock(var variable): #THERE HAS TO BE A BETTER WAY

@@ -23,7 +23,7 @@ func _ready():
 		nameList.add_child(nam)
 		valueList.add_child(val)
 
-func _process(delta):
+func _process(_delta):
 	for i in editor.vars.size():
 		valLabels[editor.vars[i]["name"]].set_text(str(editor.vars[i]["value"]))
 

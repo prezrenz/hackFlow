@@ -1,8 +1,8 @@
 extends AcceptDialog
 
 onready var root = get_tree().get_current_scene()
-onready var cmdLabel = $VBoxContainer/CmdLabel
-onready var errorLabel = $VBoxContainer/ErrorLabel
+#onready var cmdLabel = $VBoxContainer/CmdLabel
+#onready var errorLabel = $VBoxContainer/ErrorLabel
 
 func _ready():
 	self.get_close_button().visible = false

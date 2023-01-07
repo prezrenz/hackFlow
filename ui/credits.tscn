@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/credits.gd" type="Script" id=1]
+
+[node name="credits" type="AcceptDialog"]
+margin_right = 83.0
+margin_bottom = 58.0
+window_title = "Credits"
+dialog_text = "Icons are from various artists on Game-Icons.net
+
+SYNNova Font is by Mateusz Machalski, taken from fontsquirrel.com
+
+Made with Godot Game Engine
+
+Game made by Renjie Perez"
+script = ExtResource( 1 )

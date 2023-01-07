@@ -35,7 +35,7 @@ func _ready():
 	root.connect("toggleData", self, "toggle_data")
 	add_to_group("tiles")
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 func toggle_data():
