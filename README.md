@@ -1,3 +1,7 @@
+# THIS REPO HAS BEEN ARCHIVED, REFACTORED REPO AVAILABLE [HERE](https://github.com/prezrenz/hackFlow-Refactor)
+
+---
+
 # HackFlow
 A programming game where you must program your way out of the Internet.
 
